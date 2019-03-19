@@ -13,6 +13,8 @@
 		9C9B95AD2240789A00548B22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C9B95AC2240789A00548B22 /* Assets.xcassets */; };
 		9C9B95B02240789A00548B22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C9B95AE2240789A00548B22 /* LaunchScreen.storyboard */; };
 		9C9B95B82240911000548B22 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9B95B72240911000548B22 /* SecondViewController.swift */; };
+		9C9B95BC2240C3CD00548B22 /* 0001.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9C9B95BB2240C3CD00548B22 /* 0001.wav */; };
+		9C9B95BF2240C77700548B22 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C9B95BE2240C77700548B22 /* art.scnassets */; };
 		EA7740064241C9BEAE596B7C /* Pods_ConchCall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E7B430865E13005ED795F62 /* Pods_ConchCall.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +30,8 @@
 		9C9B95AF2240789A00548B22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9C9B95B12240789A00548B22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9C9B95B72240911000548B22 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		9C9B95BB2240C3CD00548B22 /* 0001.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 0001.wav; sourceTree = "<group>"; };
+		9C9B95BE2240C77700548B22 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +80,10 @@
 				9C9B95A92240789900548B22 /* Main.storyboard */,
 				9C9B95B72240911000548B22 /* SecondViewController.swift */,
 				9C9B95AC2240789A00548B22 /* Assets.xcassets */,
+				9C9B95BB2240C3CD00548B22 /* 0001.wav */,
 				9C9B95AE2240789A00548B22 /* LaunchScreen.storyboard */,
 				9C9B95B12240789A00548B22 /* Info.plist */,
+				9C9B95BE2240C77700548B22 /* art.scnassets */,
 			);
 			path = ConchCall;
 			sourceTree = "<group>";
@@ -152,6 +158,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C9B95B02240789A00548B22 /* LaunchScreen.storyboard in Resources */,
+				9C9B95BC2240C3CD00548B22 /* 0001.wav in Resources */,
+				9C9B95BF2240C77700548B22 /* art.scnassets in Resources */,
 				9C9B95AD2240789A00548B22 /* Assets.xcassets in Resources */,
 				9C9B95AB2240789900548B22 /* Main.storyboard in Resources */,
 			);
