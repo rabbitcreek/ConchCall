@@ -109,9 +109,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UNUserNotific
             content.sound = UNNotificationSound.default
             //content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "shortWav.wav"))
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
-            let uuidString = UUID().uuidString
+            //let uuidString = UUID().uuidString
             //let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-            let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
+            let request = UNNotificationRequest(identifier: "Last Call", content: content, trigger: trigger)
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         print("here")
             
@@ -156,7 +156,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UNUserNotific
         completionHandler()
     }
     
-  
+    @IBAction func secretButton(_ sender: Any) {
+         performSegue(withIdentifier: "goToScreenTwo", sender: self)
+    }
+    
 }
 
 
