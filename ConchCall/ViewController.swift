@@ -27,6 +27,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UNUserNotific
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+              
+                
+               
+        
+        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         locationManager.requestWhenInUseAuthorization()
@@ -51,7 +57,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UNUserNotific
     @IBAction func activateSchedule(_ sender: Any) {
         // Do any additional setup after loading the view, typically from a nib.
         
-        
+        (sender as! UIButton).setTitle("Invitation Sent", for: [])
         
         // Do any additional setup after loading the view, typically from a nib.
         
@@ -66,26 +72,34 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UNUserNotific
         let sunset = solar?.sunset
         //let dateComponents = Calendar.current.dateComponents([.timeZone, .year, .month, .day, .hour, .minute, .second], from: sunset!)
         var dateComponents = Calendar.current.dateComponents([  .hour, .minute, .second], from: sunset!)
+       /*
         let date = Date()
         let calendar = Calendar.current
         
         let hour = calendar.component(.hour, from: date)
         let minutes = calendar.component(.minute, from: date)
         if hour == dateComponents.hour! && minutes >= dateComponents.minute! {
-            (sender as! UIButton).setTitle("Try Tommorow", for: [])
-            sunsetTimeLabel.text = ""
+            //(sender as! UIButton).setTitle("Try Tommorow", for: [])
+            sunsetTimeLabel.text = "Sleeping!"
         } else if hour > dateComponents.hour! {
-            (sender as! UIButton).setTitle("Try Tommorow", for: [])
-            sunsetTimeLabel.text = ""
+            //(sender as! UIButton).setTitle("Try Tommorow", for: [])
+            sunsetTimeLabel.text = "Sleeping!"
         }
         else{
             (sender as! UIButton).setTitle("Invitation Sent", for: [])
-            
+ */
             //dateComponents.hour = 14
             //dateComponents.minute = 17
             print(" Sunset:  \(dateComponents)")
             sunsetTimeLabel.text = " \( (dateComponents.hour ?? 0) - 12) : " + String(format: "%02d", dateComponents.minute ?? 0)
             let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+            if granted {
+                print("Yay!")
+            } else {
+                print("D'oh")
+            }
+        }
             center.delegate = self
             let content = UNMutableNotificationContent()
             content.title = "Conch Call"
@@ -93,14 +107,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UNUserNotific
             content.categoryIdentifier = "alarm"
             content.userInfo = ["customData": "fizzbuzz"]
             content.sound = UNNotificationSound.default
-            //content.sound = UNNotificationSound(named: "MySound.aiff")
+            //content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "shortWav.wav"))
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+            let uuidString = UUID().uuidString
             //let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-            let request = UNNotificationRequest(identifier: "last call", content: content, trigger: trigger)
+            let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        print("here")
             
-            //let uuidString = UUID().uuidString
-        }
+        
         
         
     }
@@ -141,9 +156,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UNUserNotific
         completionHandler()
     }
     
-    
-    @IBAction func surpriseConch(_ sender: Any) {
-    }
+  
 }
 
 

@@ -7,14 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C5E129F2240D97200A54187 /* shortWav.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9C5E129E2240D97200A54187 /* shortWav.wav */; };
 		9C9B95A62240789900548B22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9B95A52240789900548B22 /* AppDelegate.swift */; };
 		9C9B95A82240789900548B22 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9B95A72240789900548B22 /* ViewController.swift */; };
 		9C9B95AB2240789900548B22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C9B95A92240789900548B22 /* Main.storyboard */; };
 		9C9B95AD2240789A00548B22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C9B95AC2240789A00548B22 /* Assets.xcassets */; };
 		9C9B95B02240789A00548B22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C9B95AE2240789A00548B22 /* LaunchScreen.storyboard */; };
-		9C9B95B82240911000548B22 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9B95B72240911000548B22 /* SecondViewController.swift */; };
 		9C9B95BC2240C3CD00548B22 /* 0001.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9C9B95BB2240C3CD00548B22 /* 0001.wav */; };
 		9C9B95BF2240C77700548B22 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 9C9B95BE2240C77700548B22 /* art.scnassets */; };
+		9CE7964522422EF2005CFDF5 /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE7964422422EF1005CFDF5 /* NextViewController.swift */; };
 		EA7740064241C9BEAE596B7C /* Pods_ConchCall.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E7B430865E13005ED795F62 /* Pods_ConchCall.framework */; };
 /* End PBXBuildFile section */
 
@@ -22,6 +23,7 @@
 		3C18263AB86A41E030B01155 /* Pods-ConchCall.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConchCall.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ConchCall/Pods-ConchCall.debug.xcconfig"; sourceTree = "<group>"; };
 		3E7B430865E13005ED795F62 /* Pods_ConchCall.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConchCall.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6658E3865F16D6B88BB8C4E0 /* Pods-ConchCall.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConchCall.release.xcconfig"; path = "Pods/Target Support Files/Pods-ConchCall/Pods-ConchCall.release.xcconfig"; sourceTree = "<group>"; };
+		9C5E129E2240D97200A54187 /* shortWav.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shortWav.wav; sourceTree = "<group>"; };
 		9C9B95A22240789900548B22 /* ConchCall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConchCall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C9B95A52240789900548B22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9C9B95A72240789900548B22 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,9 +31,9 @@
 		9C9B95AC2240789A00548B22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9C9B95AF2240789A00548B22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9C9B95B12240789A00548B22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9C9B95B72240911000548B22 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		9C9B95BB2240C3CD00548B22 /* 0001.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 0001.wav; sourceTree = "<group>"; };
 		9C9B95BE2240C77700548B22 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		9CE7964422422EF1005CFDF5 /* NextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,11 +78,12 @@
 			isa = PBXGroup;
 			children = (
 				9C9B95A52240789900548B22 /* AppDelegate.swift */,
+				9CE7964422422EF1005CFDF5 /* NextViewController.swift */,
 				9C9B95A72240789900548B22 /* ViewController.swift */,
 				9C9B95A92240789900548B22 /* Main.storyboard */,
-				9C9B95B72240911000548B22 /* SecondViewController.swift */,
 				9C9B95AC2240789A00548B22 /* Assets.xcassets */,
 				9C9B95BB2240C3CD00548B22 /* 0001.wav */,
+				9C5E129E2240D97200A54187 /* shortWav.wav */,
 				9C9B95AE2240789A00548B22 /* LaunchScreen.storyboard */,
 				9C9B95B12240789A00548B22 /* Info.plist */,
 				9C9B95BE2240C77700548B22 /* art.scnassets */,
@@ -157,6 +160,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C5E129F2240D97200A54187 /* shortWav.wav in Resources */,
 				9C9B95B02240789A00548B22 /* LaunchScreen.storyboard in Resources */,
 				9C9B95BC2240C3CD00548B22 /* 0001.wav in Resources */,
 				9C9B95BF2240C77700548B22 /* art.scnassets in Resources */,
@@ -219,8 +223,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C9B95B82240911000548B22 /* SecondViewController.swift in Sources */,
 				9C9B95A82240789900548B22 /* ViewController.swift in Sources */,
+				9CE7964522422EF2005CFDF5 /* NextViewController.swift in Sources */,
 				9C9B95A62240789900548B22 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,8 +1,8 @@
 //
-//  SecondViewController.swift
+//  NextViewController.swift
 //  ConchCall
 //
-//  Created by RobertW. on 3/18/19.
+//  Created by RobertW. on 3/19/19.
 //  Copyright © 2019 RobertW. All rights reserved.
 //
 
@@ -10,17 +10,14 @@ import UIKit
 import SceneKit
 import ARKit
 
-
-class secondViewController: UIViewController, ARSCNViewDelegate{
-        var audioPlayer: AVAudioPlayer!
-        let soundEffect = URL(fileURLWithPath: Bundle.main.path(forResource: "0001", ofType: "wav")!)
-        var mover: Double = 0
-
+class NextViewController: UIViewController, ARSCNViewDelegate{
+    var audioPlayer: AVAudioPlayer!
+    let soundEffect = URL(fileURLWithPath: Bundle.main.path(forResource: "0001", ofType: "wav")!)
+    var mover: Double = 0
     @IBOutlet weak var sceneView: ARSCNView!
-     let configuration = ARWorldTrackingConfiguration()
+    let configuration = ARWorldTrackingConfiguration()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Set the view's delegate
         sceneView.delegate = self
         
@@ -53,7 +50,6 @@ class secondViewController: UIViewController, ARSCNViewDelegate{
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
         sceneView.addGestureRecognizer(gestureRecognizer)
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configuration.environmentTexturing = .automatic
@@ -63,58 +59,30 @@ class secondViewController: UIViewController, ARSCNViewDelegate{
         // Run the view's session
         sceneView.session.run(configuration)
     }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         // Pause the view's session
         sceneView.session.pause()
     }
-    
-    // MARK: - ARSCNViewDelegate
-    
-    /*
-     // Override to create and configure nodes for anchors added to the view's session.
-     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-     let node = SCNNode()
-     
-     return node
-     }
-     */
-    
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
-        
-    }
-    
-    func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
-    }
-    
-    func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
-        
-    }
-    
     func addLight() {
-        // 1
-        let directionalLight = SCNLight()
-        directionalLight.type = .directional
-        // 2
-        directionalLight.intensity = 0
-        // 3
-        directionalLight.castsShadow = true
-        directionalLight.shadowMode = .deferred
-        // 4
-        directionalLight.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
-        // 5
-        directionalLight.shadowSampleCount = 10
-        // 6
-        let directionalLightNode = SCNNode()
-        directionalLightNode.light = directionalLight
-        directionalLightNode.rotation = SCNVector4Make(1, 1, 0, -Float.pi / 3)
-        sceneView.scene.rootNode.addChildNode(directionalLightNode)
+    // 1
+    let directionalLight = SCNLight()
+    directionalLight.type = .directional
+    // 2
+    directionalLight.intensity = 0
+    // 3
+    directionalLight.castsShadow = true
+    directionalLight.shadowMode = .deferred
+    // 4
+    directionalLight.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
+    // 5
+    directionalLight.shadowSampleCount = 10
+    // 6
+    let directionalLightNode = SCNNode()
+    directionalLightNode.light = directionalLight
+    directionalLightNode.rotation = SCNVector4Make(1, 1, 0, -Float.pi / 3)
+    sceneView.scene.rootNode.addChildNode(directionalLightNode)
     }
     @objc func tapped(recognizer :UIGestureRecognizer) {
         // Get exact position where touch happened on screen of iPhone (2D coordinate)
@@ -176,5 +144,6 @@ class secondViewController: UIViewController, ARSCNViewDelegate{
 extension Int {
     var degreesToRadians: Double { return Double(self) * .pi/180}
 }
+
 
 
