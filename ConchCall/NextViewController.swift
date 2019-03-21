@@ -29,8 +29,11 @@ class NextViewController: UIViewController, ARSCNViewDelegate {
         sceneView.delegate = self
         sceneView.showsStatistics = true
         // Gestures
+        
+       
         let tapGesure = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         sceneView.addGestureRecognizer(tapGesure)
+ 
         // Show statistics such as fps and timing information
         self.sceneView.autoenablesDefaultLighting = true
     }
@@ -75,17 +78,18 @@ class NextViewController: UIViewController, ARSCNViewDelegate {
             fatalError("Unable to find baseNode")
         }
         baseNode.position = position
-        
-        
-       
         _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true){ t in
             self.count = self.count + self.mover
-            print(self.count)
-            baseNode.position = SCNVector3(0.5,0,self.count)
+            //print(self.count)
+            if self.mover < 0 {
+            baseNode.position = SCNVector3(0,0,self.count)
+            }
             if self.count <= -20 {
                 t.invalidate()
             }
         }
+        
+     
 
         baseNode.scale = SCNVector3Make(0.04, 0.04, 0.04)
         let action = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 8)
@@ -94,27 +98,28 @@ class NextViewController: UIViewController, ARSCNViewDelegate {
         sceneView.scene.rootNode.addChildNode(baseNode)
         // The lightingModel of the material has to be set to .physicallyBased to take advantage of the environment lighting
     }
-        
+    @objc func handleTap(gesture: UITapGestureRecognizer) {
+        let location = gesture.location(in: sceneView)
+        guard let hitTestResult = sceneView.hitTest(location, types: .featurePoint).first else { return }
+        let translation = hitTestResult.worldTransform.translation
+        position = SCNVector3Make(translation.x, translation.y, -0.6)
        
-   
-   
-    @objc func handleTap(recognizer: UITapGestureRecognizer) {
-        let touchPosition = recognizer.location(in: sceneView)
-        let results = sceneView.hitTest(touchPosition, types: .featurePoint)
-        if let result = results.first {
-            let translation = result.worldTransform.translation
-            position = SCNVector3Make(translation.x, translation.y, Float(count))
-           print(position)
-        }
-        
         addFoodModelTo(position: position)
     
- 
+  
+   
+   
+        print(position)
+        
     
+ 
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) { // Change `2.0` to the desired number of seconds.
+            // Code you want to be delayed
    
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: soundEffect)
-            audioPlayer.play()
+            self.audioPlayer = try AVAudioPlayer(contentsOf: self.soundEffect)
+            self.audioPlayer.numberOfLoops = 1
+            self.audioPlayer.play()
             
             
             
@@ -124,6 +129,7 @@ class NextViewController: UIViewController, ARSCNViewDelegate {
         
         
         // add the light to the scene
+        }
         
         
         
@@ -131,19 +137,18 @@ class NextViewController: UIViewController, ARSCNViewDelegate {
         
         
         
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) { // Change `2.0` to the desired number of seconds.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 15.0) { // Change `2.0` to the desired number of seconds.
             // Code you want to be delayed
             
             
-            self.addLight()
+            //self.addLight()
             self.mover = -0.2
             
             
             
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 20.0) { // Change `2.0` to the desired number of seconds.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 25.0) { // Change `2.0` to the desired number of seconds.
             // Code you want to be delayed
             
             self.performSegue(withIdentifier: "Return", sender: self)

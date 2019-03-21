@@ -108,9 +108,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UNUserNotific
             content.userInfo = ["customData": "fizzbuzz"]
             //content.sound = UNNotificationSound.default
             content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "shortWav.wav"))
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+            //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
             //let uuidString = UUID().uuidString
-            //let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
             let request = UNNotificationRequest(identifier: "Last Call", content: content, trigger: trigger)
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         print("here")
