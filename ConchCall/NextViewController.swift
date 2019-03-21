@@ -9,53 +9,35 @@
 import UIKit
 import SceneKit
 import ARKit
+import AVFoundation
 
-class NextViewController: UIViewController, ARSCNViewDelegate{
+class NextViewController: UIViewController, ARSCNViewDelegate {
+    
     var audioPlayer: AVAudioPlayer!
     let soundEffect = URL(fileURLWithPath: Bundle.main.path(forResource: "0001", ofType: "wav")!)
     var mover: Double = 0
+    var position = SCNVector3(0,0,0)
+    var count = -0.5
+    
     @IBOutlet weak var sceneView: ARSCNView!
     let configuration = ARWorldTrackingConfiguration()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Set the view's delegate
+        let scene = SCNScene()
+        sceneView.scene = scene
         sceneView.delegate = self
-        
-        // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
+        // Gestures
+        let tapGesure = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        sceneView.addGestureRecognizer(tapGesure)
+        // Show statistics such as fps and timing information
         self.sceneView.autoenablesDefaultLighting = true
-        sceneView.session.run(configuration)
-        // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/conch3.dae")!
-        let planeNode = scene.rootNode.childNode(withName: "baseNode", recursively: true)
-        planeNode?.scale = SCNVector3Make(0.05, 0.05, 0.05)
-        planeNode?.position = SCNVector3(0.5,0,-0.5)
-        var count = -0.5
-        _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true){ t in
-            count = count + self.mover
-            print(count)
-            planeNode?.position = SCNVector3(0.5,0,count)
-            if count <= -20 {
-                t.invalidate()
-            }
-        }
-        
-        self.sceneView.scene.rootNode.addChildNode(planeNode!)
-        let action = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 8)
-        let forever = SCNAction.repeatForever(action)
-        planeNode?.runAction(forever)
-        // Set the scene to the view
-        //sceneView.scene = scene
-        
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
-        sceneView.addGestureRecognizer(gestureRecognizer)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let configuration = ARWorldTrackingConfiguration()
         configuration.environmentTexturing = .automatic
-        // Create a session configuration
-        // let configuration = ARWorldTrackingConfiguration()
-        
         // Run the view's session
         sceneView.session.run(configuration)
     }
@@ -84,22 +66,52 @@ class NextViewController: UIViewController, ARSCNViewDelegate{
     directionalLightNode.rotation = SCNVector4Make(1, 1, 0, -Float.pi / 3)
     sceneView.scene.rootNode.addChildNode(directionalLightNode)
     }
-    @objc func tapped(recognizer :UIGestureRecognizer) {
-        // Get exact position where touch happened on screen of iPhone (2D coordinate)
-        let touchPosition = recognizer.location(in: sceneView)
-        
-        // 2.
-        // Conduct a hit test based on a feature point that ARKit detected to find out what 3D point this 2D coordinate relates to
-        let hitTestResult = sceneView.hitTest(touchPosition, types: .featurePoint)
-        
-        // 3.
-        if !hitTestResult.isEmpty {
-            guard let hitResult = hitTestResult.first else {
-                return
-            }
-            print(hitResult.worldTransform.columns.3)
-            // setting up url for your soundtrack
+    
+    func addFoodModelTo(position: SCNVector3) {
+        guard let conchScene = SCNScene(named: "art.scnassets/conch3.dae") else {
+            fatalError("Unable to find conch3.dae")
         }
+        guard let baseNode = conchScene.rootNode.childNode(withName: "baseNode", recursively: true) else {
+            fatalError("Unable to find baseNode")
+        }
+        baseNode.position = position
+        
+        
+       
+        _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true){ t in
+            self.count = self.count + self.mover
+            print(self.count)
+            baseNode.position = SCNVector3(0.5,0,self.count)
+            if self.count <= -20 {
+                t.invalidate()
+            }
+        }
+
+        baseNode.scale = SCNVector3Make(0.04, 0.04, 0.04)
+        let action = SCNAction.rotateBy(x: 0, y: CGFloat(360.degreesToRadians), z: 0, duration: 8)
+        let forever = SCNAction.repeatForever(action)
+        baseNode.runAction(forever)
+        sceneView.scene.rootNode.addChildNode(baseNode)
+        // The lightingModel of the material has to be set to .physicallyBased to take advantage of the environment lighting
+    }
+        
+       
+   
+   
+    @objc func handleTap(recognizer: UITapGestureRecognizer) {
+        let touchPosition = recognizer.location(in: sceneView)
+        let results = sceneView.hitTest(touchPosition, types: .featurePoint)
+        if let result = results.first {
+            let translation = result.worldTransform.translation
+            position = SCNVector3Make(translation.x, translation.y, Float(count))
+           print(position)
+        }
+        
+        addFoodModelTo(position: position)
+    
+ 
+    
+   
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: soundEffect)
             audioPlayer.play()
@@ -136,14 +148,19 @@ class NextViewController: UIViewController, ARSCNViewDelegate{
             
             self.performSegue(withIdentifier: "Return", sender: self)
         }
+    
+    
     }
-    
-    
-    
 }
+
 extension Int {
     var degreesToRadians: Double { return Double(self) * .pi/180}
 }
-
+extension float4x4 {
+    var translation: float3 {
+        let translation = self.columns.3
+        return float3(translation.x, translation.y, translation.z)
+    }
+}
 
 

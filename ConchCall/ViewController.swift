@@ -106,8 +106,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UNUserNotific
             content.body = "Its Sundown Time to Blow the Conch"
             content.categoryIdentifier = "alarm"
             content.userInfo = ["customData": "fizzbuzz"]
-            content.sound = UNNotificationSound.default
-            //content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "shortWav.wav"))
+            //content.sound = UNNotificationSound.default
+            content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "shortWav.wav"))
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
             //let uuidString = UUID().uuidString
             //let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
