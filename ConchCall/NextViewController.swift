@@ -82,13 +82,17 @@ class NextViewController: UIViewController, ARSCNViewDelegate {
    
     @IBAction func fireConch(_ sender:UIButton) {
     position = SCNVector3(0.1,-0.1,-0.6)
+        
         sender.setImage(nil, for: [])
+        //fireConch.enabled = false
+        let conflictingAction = sender as UIButton
+        conflictingAction.isEnabled = false
     addFoodModelTo(position: position)
         print(position)
         
     
  
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) { // Change `2.0` to the desired number of seconds.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 6.0) { // Change `2.0` to the desired number of seconds.
             // Code you want to be delayed
    
         do {

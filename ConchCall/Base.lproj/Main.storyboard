@@ -99,7 +99,7 @@
                                     <constraint firstAttribute="width" constant="100" id="0c9-VH-cjg"/>
                                     <constraint firstAttribute="height" constant="100" id="Wxz-ej-7u9"/>
                                 </constraints>
-                                <state key="normal" image="kisspng-reticle-computer-icons-shooting-target-telescopic-shooting-target-5ada42938bcd45.0270314815242533315726">
+                                <state key="normal" image="square-2">
                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -134,7 +134,7 @@
     </scenes>
     <resources>
         <image name="finalicon" width="2492.181884765625" height="2492.181884765625"/>
-        <image name="kisspng-reticle-computer-icons-shooting-target-telescopic-shooting-target-5ada42938bcd45.0270314815242533315726" width="980" height="980"/>
         <image name="lastSunset - 1" width="1908" height="2960"/>
+        <image name="square-2" width="384" height="384"/>
     </resources>
 </document>
