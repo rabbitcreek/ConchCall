@@ -28,11 +28,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UNUserNotific
     override func viewDidLoad() {
         super.viewDidLoad()
         
-              
-                
-               
-        
-        
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         locationManager.requestWhenInUseAuthorization()
@@ -69,7 +64,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UNUserNotific
         //someDate = someDate?.addingTimeInterval(20.0 * 60.0)
         let solar = Solar(for: someDate!, coordinate: myLocation)
         //let dateAsString = solar?.sunrise
-        let sunset = solar?.sunset
+         let sunset = solar?.sunset
+    
         //let dateComponents = Calendar.current.dateComponents([.timeZone, .year, .month, .day, .hour, .minute, .second], from: sunset!)
         var dateComponents = Calendar.current.dateComponents([  .hour, .minute, .second], from: sunset!)
        /*
@@ -90,10 +86,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UNUserNotific
  */
             //dateComponents.hour = 14
             //dateComponents.minute = 17
+      
             print(" Sunset:  \(dateComponents)")
             sunsetTimeLabel.text = " \( (dateComponents.hour ?? 0) - 12) : " + String(format: "%02d", dateComponents.minute ?? 0)
             let center = UNUserNotificationCenter.current()
-        center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
+            center.requestAuthorization(options: [.alert, .badge, .sound]) { (granted, error) in
             if granted {
                 print("Yay!")
             } else {
@@ -113,10 +110,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UNUserNotific
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
             let request = UNNotificationRequest(identifier: "Last Call", content: content, trigger: trigger)
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-        print("here")
-            
-        
-        
         
     }
     func userNotificationCenter(_ center: UNUserNotificationCenter,

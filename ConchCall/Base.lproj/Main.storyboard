@@ -93,6 +93,19 @@
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W9V-sN-ORD">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </arscnView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DHs-ip-Fcf">
+                                <rect key="frame" x="137.5" y="283.5" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="0c9-VH-cjg"/>
+                                    <constraint firstAttribute="height" constant="100" id="Wxz-ej-7u9"/>
+                                </constraints>
+                                <state key="normal" image="kisspng-reticle-computer-icons-shooting-target-telescopic-shooting-target-5ada42938bcd45.0270314815242533315726">
+                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="fireConch:" destination="6Ic-4J-VdZ" eventType="touchUpInside" id="P4h-DK-93P"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -104,6 +117,8 @@
                             <constraint firstItem="W9V-sN-ORD" firstAttribute="leading" secondItem="954-e5-JRm" secondAttribute="leading" id="buh-N2-V7n"/>
                             <constraint firstItem="W9V-sN-ORD" firstAttribute="top" secondItem="Yyo-xv-kgv" secondAttribute="top" id="hqg-sM-aEI"/>
                             <constraint firstItem="Cug-ZC-3CO" firstAttribute="bottom" secondItem="954-e5-JRm" secondAttribute="bottom" id="nIg-Nc-yU4"/>
+                            <constraint firstItem="DHs-ip-Fcf" firstAttribute="centerX" secondItem="Cug-ZC-3CO" secondAttribute="centerX" id="pWH-5T-Ajz"/>
+                            <constraint firstItem="DHs-ip-Fcf" firstAttribute="centerY" secondItem="W9V-sN-ORD" secondAttribute="centerY" id="uVy-lz-DBS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="954-e5-JRm"/>
                     </view>
@@ -119,6 +134,7 @@
     </scenes>
     <resources>
         <image name="finalicon" width="2492.181884765625" height="2492.181884765625"/>
+        <image name="kisspng-reticle-computer-icons-shooting-target-telescopic-shooting-target-5ada42938bcd45.0270314815242533315726" width="980" height="980"/>
         <image name="lastSunset - 1" width="1908" height="2960"/>
     </resources>
 </document>
