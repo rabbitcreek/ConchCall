@@ -87,6 +87,8 @@ class NextViewController: UIViewController, ARSCNViewDelegate {
         //fireConch.enabled = false
         let conflictingAction = sender as UIButton
         conflictingAction.isEnabled = false
+        let generator = UIImpactFeedbackGenerator(style: .heavy)
+        generator.impactOccurred()
     addFoodModelTo(position: position)
         print(position)
         

@@ -17,6 +17,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UNUserNotific
     let locationManager = CLLocationManager()
     var latitudeMap : Double = 0.0
     var longMap: Double = 0.0
+    
 
 
     @IBOutlet weak var sunsetView: UIImageView!
@@ -102,10 +103,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UNUserNotific
             content.title = "Conch Call"
             content.body = "Its Sundown Time to Blow the Conch"
             content.categoryIdentifier = "alarm"
-            content.userInfo = ["customData": "fizzbuzz"]
-            //content.sound = UNNotificationSound.default
-            content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "shortWav.wav"))
-            //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+            //content.userInfo = ["customData": "fizzbuzz"]
+            content.sound = UNNotificationSound.default
+            //content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "shortWav.wav"))
+            //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
             //let uuidString = UUID().uuidString
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
             let request = UNNotificationRequest(identifier: "Last Call", content: content, trigger: trigger)
@@ -121,7 +122,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UNUserNotific
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         // pull out the buried userInfo dictionary
         print("one")
+        
+        if response.actionIdentifier == UNNotificationDismissActionIdentifier {
         performSegue(withIdentifier: "goToScreenTwo", sender: self)
+            // The user dismissed the notification without taking action
+        }
+        else if response.actionIdentifier == UNNotificationDefaultActionIdentifier {
+            // The user launched the app
+        performSegue(withIdentifier: "goToScreenTwo", sender: self)
+        }
+        performSegue(withIdentifier: "goToScreenTwo", sender: self)
+        // Else handle any custom actions. . .
+    
+        /*
         let userInfo = response.notification.request.content.userInfo
         
         if let customData = userInfo["customData"] as? String {
@@ -144,7 +157,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UNUserNotific
                 break
             }
         }
-        
+       */
         // you must call the completion handler when you're done
         completionHandler()
     }
